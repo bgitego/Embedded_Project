@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>937476277</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+      <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
+      <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+      <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\project.pbd</file>
+      <file>$PROJ_DIR$\Debug\List\project.map</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
+      <file>$PROJ_DIR$\Debug\Exe\project.out</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\tm4c123gh6pm.h</file>
+      <file>$TOOLKIT_DIR$\config\linker\TexasInstruments\LM4F120H5QR.icf</file>
+      <file>$TOOLKIT_DIR$\lib\rt4t_al.a</file>
+      <file>$TOOLKIT_DIR$\lib\dl4t_tln.a</file>
+      <file>$TOOLKIT_DIR$\lib\shs_l.a</file>
+      <file>$TOOLKIT_DIR$\config\generic.icf</file>
+      <file>$TOOLKIT_DIR$\lib\m4t_tl.a</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\project.out</name>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 15 7 14 12 16 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

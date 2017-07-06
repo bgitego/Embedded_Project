@@ -1,0 +1,15 @@
+"--endian=little" 
+
+"--cpu=Cortex-M0" 
+
+"--fpu=None" 
+
+"--drv_verify_download" 
+
+"--semihosting=none" 
+
+"--drv_interface_speed=500" 
+
+
+
+

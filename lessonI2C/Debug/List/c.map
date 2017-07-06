@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR ELF Linker V8.11.1.13263/W32 for ARM                04/Jul/2017  17:50:51
+# IAR ELF Linker V8.11.1.13263/W32 for ARM                06/Jul/2017  19:31:29
 # Copyright 2007-2017 IAR Systems AB.
 #
 #    Output file  =  C:\Embedded_Programming\lessonI2C\Debug\Exe\c.out
 #    Map file     =  C:\Embedded_Programming\lessonI2C\Debug\List\c.map
 #    Command line =  
-#        -f C:\Users\bot-10\AppData\Local\Temp\EWF548.tmp
+#        -f C:\Users\bot-10\AppData\Local\Temp\EW83C8.tmp
 #        (C:\Embedded_Programming\lessonI2C\Debug\Obj\delay.o
 #        C:\Embedded_Programming\lessonI2C\Debug\Obj\grideye.o
 #        C:\Embedded_Programming\lessonI2C\Debug\Obj\i2c.o
@@ -54,28 +54,28 @@ was not specified.
   .intvec   ro code  0x00000000   0x40  vector_table_M.o [4]
                    - 0x00000040   0x40
 
-"P1":                            0x69c
+"P1":                            0x700
   .text     ro code  0x00000040  0x284  i2c.o [1]
-  .text     ro code  0x000002c4  0x138  UART.o [1]
-  .text     ro code  0x000003fc  0x134  main.o [1]
-  .text     ro code  0x00000530   0x14  delay.o [1]
-  .text     ro code  0x00000544   0x42  grideye.o [1]
-  .text     ro code  0x00000586    0x2  vector_table_M.o [4]
-  .rodata   const    0x00000588   0x2c  i2c.o [1]
-  .rodata   const    0x000005b4   0x2c  i2c.o [1]
-  .rodata   const    0x000005e0   0x28  i2c.o [1]
-  .rodata   const    0x00000608   0x24  i2c.o [1]
-  .rodata   const    0x0000062c   0x1c  i2c.o [1]
-  .rodata   const    0x00000648   0x1c  i2c.o [1]
-  .rodata   const    0x00000664   0x1c  i2c.o [1]
-  .text     ro code  0x00000680   0x1a  cmain.o [4]
-  .text     ro code  0x0000069a    0x4  low_level_init.o [3]
-  .text     ro code  0x0000069e    0x4  exit.o [3]
-  .text     ro code  0x000006a4    0xa  cexit.o [4]
-  .text     ro code  0x000006b0    0xc  XXexit.o [4]
-  .rodata   const    0x000006bc   0x14  i2c.o [1]
-  .text     ro code  0x000006d0    0xc  cstartup_M.o [4]
-                   - 0x000006dc  0x69c
+  .text     ro code  0x000002c4  0x170  UART.o [1]
+  .text     ro code  0x00000434  0x14c  main.o [1]
+  .text     ro code  0x00000580   0x14  delay.o [1]
+  .text     ro code  0x00000594   0x58  grideye.o [1]
+  .rodata   const    0x000005ec   0x2c  i2c.o [1]
+  .rodata   const    0x00000618   0x2c  i2c.o [1]
+  .rodata   const    0x00000644   0x28  i2c.o [1]
+  .rodata   const    0x0000066c   0x24  i2c.o [1]
+  .rodata   const    0x00000690   0x1c  i2c.o [1]
+  .rodata   const    0x000006ac   0x1c  i2c.o [1]
+  .rodata   const    0x000006c8   0x1c  i2c.o [1]
+  .text     ro code  0x000006e4   0x1a  cmain.o [4]
+  .text     ro code  0x000006fe    0x4  low_level_init.o [3]
+  .text     ro code  0x00000702    0x4  exit.o [3]
+  .text     ro code  0x00000706    0x2  vector_table_M.o [4]
+  .text     ro code  0x00000708    0xa  cexit.o [4]
+  .text     ro code  0x00000714    0xc  XXexit.o [4]
+  .rodata   const    0x00000720   0x14  i2c.o [1]
+  .text     ro code  0x00000734    0xc  cstartup_M.o [4]
+                   - 0x00000740  0x700
 
 "P2":                            0x400
   CSTACK             0x20000000  0x400  <Block>
@@ -91,13 +91,13 @@ was not specified.
     Module            ro code  ro data  rw data
     ------            -------  -------  -------
 C:\Embedded_Programming\lessonI2C\Debug\Obj: [1]
-    UART.o                312
+    UART.o                368
     delay.o                20
-    grideye.o              66
+    grideye.o              88
     i2c.o                 644      268
-    main.o                308
+    main.o                332
     -------------------------------------------
-    Total:              1 350      268
+    Total:              1 452      268
 
 command line: [2]
     -------------------------------------------
@@ -118,10 +118,10 @@ rt7M_tl.a: [4]
     -------------------------------------------
     Total:                126
 
-    Gaps                    4
+    Gaps                    2
     Linker created                        1 024
 -----------------------------------------------
-    Grand Total:        1 488      268    1 024
+    Grand Total:        1 588      268    1 024
 
 
 *******************************************************************************
@@ -130,36 +130,37 @@ rt7M_tl.a: [4]
 
 Entry                      Address   Size  Type      Object
 -----                      -------   ----  ----      ------
-?main                   0x00000681         Code  Gb  cmain.o [4]
+?main                   0x000006e5         Code  Gb  cmain.o [4]
 CSTACK$$Base            0x20000000          --   Gb  - Linker created -
 CSTACK$$Limit           0x20000400          --   Gb  - Linker created -
-I2CErrorRoutine         0x000001d1   0x96  Code  Gb  i2c.o [1]
-I2CWait                 0x00000267    0xa  Code  Gb  i2c.o [1]
-InitI2C0                0x00000041   0x82  Code  Gb  i2c.o [1]
-ReadNByteI2C0           0x000000c3   0xc4  Code  Gb  i2c.o [1]
+ErrorRoutine_I2C0       0x000001d1   0x96  Code  Gb  i2c.o [1]
+Init_I2C0               0x00000041   0x82  Code  Gb  i2c.o [1]
+Read_N_Byte_I2C0        0x000000c3   0xc4  Code  Gb  i2c.o [1]
 Region$$Table$$Base     0x00000000          --   Gb  - Linker created -
 Region$$Table$$Limit    0x00000000          --   Gb  - Linker created -
-SetReadWrite            0x000001af   0x22  Code  Gb  i2c.o [1]
-SetSlaveAddres          0x00000187   0x28  Code  Gb  i2c.o [1]
+Set_ReadWrite           0x000001af   0x22  Code  Gb  i2c.o [1]
+Set_SlaveAddres         0x00000187   0x28  Code  Gb  i2c.o [1]
 UART_Init               0x000002c5   0x80  Code  Gb  UART.o [1]
 UART_OutChar            0x00000345   0x10  Code  Gb  UART.o [1]
+UART_OutDec             0x000003c7   0x38  Code  Gb  UART.o [1]
 UART_OutString          0x00000389   0x16  Code  Gb  UART.o [1]
 UART_OutUDec            0x0000039f   0x28  Code  Gb  UART.o [1]
-UART_OutUHex            0x000003c7   0x36  Code  Gb  UART.o [1]
-__cmain                 0x00000681         Code  Gb  cmain.o [4]
-__exit                  0x000006b1         Code  Gb  XXexit.o [4]
-__iar_program_start     0x000006d1         Code  Gb  cstartup_M.o [4]
+UART_OutUHex            0x000003ff   0x36  Code  Gb  UART.o [1]
+Wait_I2C0               0x00000267    0xa  Code  Gb  i2c.o [1]
+__cmain                 0x000006e5         Code  Gb  cmain.o [4]
+__exit                  0x00000715         Code  Gb  XXexit.o [4]
+__iar_program_start     0x00000735         Code  Gb  cstartup_M.o [4]
 __iar_systems$$module {Abs}
                         0x00000001         Data  Gb  command line/config [2]
-__low_level_init        0x0000069b    0x4  Code  Gb  low_level_init.o [3]
+__low_level_init        0x000006ff    0x4  Code  Gb  low_level_init.o [3]
 __vector_table          0x00000000         Data  Gb  vector_table_M.o [4]
-_call_main              0x0000068d         Code  Gb  cmain.o [4]
-_exit                   0x000006a5         Code  Gb  cexit.o [4]
-_main                   0x00000697         Code  Gb  cmain.o [4]
-delay                   0x00000531   0x14  Code  Gb  delay.o [1]
-exit                    0x0000069f    0x4  Code  Gb  exit.o [3]
-grideye_convert         0x00000545   0x42  Code  Gb  grideye.o [1]
-main                    0x000003fd  0x134  Code  Gb  main.o [1]
+_call_main              0x000006f1         Code  Gb  cmain.o [4]
+_exit                   0x00000709         Code  Gb  cexit.o [4]
+_main                   0x000006fb         Code  Gb  cmain.o [4]
+delay                   0x00000581   0x14  Code  Gb  delay.o [1]
+exit                    0x00000703    0x4  Code  Gb  exit.o [3]
+grideye_convert         0x00000595   0x58  Code  Gb  grideye.o [1]
+main                    0x00000435  0x14c  Code  Gb  main.o [1]
 
 
 [1] = C:\Embedded_Programming\lessonI2C\Debug\Obj
@@ -167,7 +168,7 @@ main                    0x000003fd  0x134  Code  Gb  main.o [1]
 [3] = dl7M_tln.a
 [4] = rt7M_tl.a
 
-  1 488 bytes of readonly  code memory
+  1 588 bytes of readonly  code memory
     268 bytes of readonly  data memory
   1 024 bytes of readwrite data memory
 

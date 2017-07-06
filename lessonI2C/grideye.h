@@ -10,12 +10,12 @@
 #define __GRIDEYE_H__
 
 #include "stdint.h"
-void grideye_convert(uint8_t * ,uint32_t * , uint32_t );
-void GridEyeMove2Segment(uint32_t * ,uint32_t * , uint32_t );
+void grideye_convert(uint8_t * ,int16_t * , int16_t );
+void GridEyeMove2Segment(int16_t * ,int16_t * , int16_t );
 
 typedef struct
 {
-	int32_t pixel[8][8];
+	int16_t pixel[8][8];
 
 } pixel_type;
 

@@ -35,25 +35,25 @@ int main() {
  // volatile grideye_type p_grideye;
     volatile pixel_type p_segment;
      uint8_t grideye_buffer[128];
-     uint32_t grideye_pixel[64];
+     int16_t grideye_pixel[64];
 
   //UART Module Initialisation
   UART_Init();
    delay(500000);
 
 //I2C Module Initialization
-  InitI2C0();
+  Init_I2C0();
   delay(500000);
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-   ReadNByteI2C0(GRIDEYESLVADDR,GRIDEYEPIXADDR,GRIDEYENBYTE,&grideye_buffer[0] );
+   Read_N_Byte_I2C0(GRIDEYESLVADDR,GRIDEYEPIXADDR,GRIDEYENBYTE,&grideye_buffer[0] );
 
    //Initialiding buffer to all 0;
- /* for(uint8_t i =0;i<128;i++){
+  for(uint8_t i =0;i<128;i++){
     UART_OutUDec(grideye_buffer[i]);UART_OutChar(CRJ);
   }
-*/
+
   //Converting Pixel Data from 12bit two 32bit
 
    grideye_convert(&grideye_buffer[0] ,&grideye_pixel[0] , 128 );
@@ -77,7 +77,7 @@ int main() {
   for( int i=0; i < 8; i++){
     for(int j=0; j< 8; j++){
      // p_segment.pixel[i][j]= (j);
-      UART_OutUDec(p_segment.pixel[i][j]);UART_OutChar(SP);
+      UART_OutDec(p_segment.pixel[i][j]);UART_OutChar(SP);
     }
     UART_OutChar(CRJ);
   }

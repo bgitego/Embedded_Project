@@ -63,12 +63,12 @@ void UART_Init(void){
   UART0->  IBRD = 104;                             // IBRD = int(16,000,000 / (16 * 9600)) = int(104.1667)
   UART0->  FBRD = 11;                              // FBRD = int(0.1667 * 64 + 0.5) = 11
   UART0->  LCRH = (UART_LCRH_WLEN_8|UART_LCRH_FEN);
-  
+
   UART0->  CTL  |= UART_CTL_UARTEN;                // ENABLE UART
   GPIOA_AHB->  AFSEL |= 0x03;                          // enable alt funct on PA1-0
   GPIOA_AHB->  DEN   |= 0x03;                          // enable digital I/O on PA1-0
-  GPIOA_AHB->  PCTL  |= (UART0_RXPCTL|UART0_TXPCTL);   // configure PA1-0 as UART 
-  GPIOA_AHB->  AMSEL &= ~0x03;                         // disable analog functionality on PA  
+  GPIOA_AHB->  PCTL  |= (UART0_RXPCTL|UART0_TXPCTL);   // configure PA1-0 as UART
+  GPIOA_AHB->  AMSEL &= ~0x03;                         // disable analog functionality on PA
 }
 
 //------------UART_InChar------------
@@ -146,6 +146,30 @@ void UART_OutUDec(unsigned long n){
   }
   UART_OutChar(n+'0'); /* n is between 0 and 9 */
 }
+
+
+
+
+//-----------------------UART_OutUDec-----------------------
+// Output a 32-bit number in unsigned decimal format
+// Input: 32-bit number to be transferred
+// Output: none
+// Variable format 1-10 digits with no space before or after
+void UART_OutDec(unsigned long n){
+// This function uses recursion to convert decimal number
+//   of unspecified length as an ASCII string
+  if (n & 0xF0000000){
+
+	  n =((~(n))+1);
+	  UART_OutChar('-');
+  }
+  if(n >= 10){
+    UART_OutUDec(n/10);
+    n = n%10;
+  }
+  UART_OutChar(n+'0'); /* n is between 0 and 9 */
+}
+
 
 //---------------------UART_InUHex----------------------------------------
 // Accepts ASCII input in unsigned hexadecimal (base 16) format

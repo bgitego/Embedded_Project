@@ -34,7 +34,7 @@
 #define MCSARBLST       (1U << 4)
 #define MCSBUSBSY       (1U << 6)
 
-void InitI2C0(void){
+void Init_I2C0(void){
 
     UART_OutString("Initialising I2C: ");UART_OutChar(CRJ);
 
@@ -56,73 +56,73 @@ void InitI2C0(void){
 
 
 
-void SendI2C0(uint8_t SLAVE_ADDR, uint8_t SLAVE_REG, uint8_t WRITE_DATA ){
+void Send_I2C0(uint8_t SLAVE_ADDR, uint8_t SLAVE_REG, uint8_t WRITE_DATA ){
 
   //Troubleshooting Code
   UART_OutString("Iniside Writing I2C Functtion: ");UART_OutChar(CRJ);
   UART_OutString("Data Being Written Follow By Condition: ");
   UART_OutUDec(WRITE_DATA);UART_OutChar(CRJ);
 
-  SetSlaveAddres(SLAVE_ADDR);
-  SetReadWrite(0);                           //Set write Bit in the MSA Register
+  Set_SlaveAddres(SLAVE_ADDR);
+  Set_ReadWrite(0);                           //Set write Bit in the MSA Register
   I2C0 -> MDR  = SLAVE_REG;
   I2C0 -> MCS |= (0|I2CSTART|I2CRUN);        //Set Start Condition
-  I2CWait();                                 // Check if Transmission is Done
-  I2CErrorRoutine();
+  Wait_I2C0();                                 // Check if Transmission is Done
+  ErrorRoutine_I2C0();
   I2C0 -> MDR  = WRITE_DATA;
   I2C0 -> MCS |= (0|I2CSTOP|I2CRUN);         //Set Run and Stop Condition
-  I2CWait();
-  I2CErrorRoutine();
+  Wait_I2C0();
+  ErrorRoutine_I2C0();
 }
 
-uint8_t ReceiveI2C0(uint8_t SLAVE_ADDR, uint8_t SLAVE_REG ){
+uint8_t Receive_I2C0(uint8_t SLAVE_ADDR, uint8_t SLAVE_REG ){
 
   //Troubleshooting Code
   //UART_OutString("Iniside Reading I2C Functtion: ");UART_OutChar(CRJ);
   //UART_OutString("Data Being Written Follow By Condition: ");
 
-  SetSlaveAddres(SLAVE_ADDR);
-  SetReadWrite(0);                            //Set write Bit in the MSA Register
+  Set_SlaveAddres(SLAVE_ADDR);
+  Set_ReadWrite(0);                            //Set write Bit in the MSA Register
   I2C0 -> MDR  = SLAVE_REG;
   I2C0 -> MCS = (I2CACK|I2CSTART|I2CRUN);     //Set Start Condition
-  I2CWait();
-  I2CErrorRoutine();
+  Wait_I2C0();
+  ErrorRoutine_I2C0();
 
-  SetReadWrite(1);                            //Set Read Bit in the MSA Register
+  Set_ReadWrite(1);                            //Set Read Bit in the MSA Register
   I2C0 -> MCS =  (I2CSTOP|I2CRUN);	          //Stop and Run Condition
 
-  I2CWait();
-  I2CErrorRoutine();
+  Wait_I2C0();
+  ErrorRoutine_I2C0();
   return I2C0 -> MDR;
 
 }
 
 
-void ReadNByteI2C0(uint8_t SLAVE_ADDR, uint8_t SLAVE_REG,uint8_t N_Byte, uint8_t *STORE_ADDR ){
+void Read_N_Byte_I2C0(uint8_t SLAVE_ADDR, uint8_t SLAVE_REG,uint8_t N_Byte, uint8_t *STORE_ADDR ){
 
 	//(1) Write Slave Address
-	SetSlaveAddres(SLAVE_ADDR);
+	Set_SlaveAddres(SLAVE_ADDR);
 	//(2) Set write Bit in the MSA Register
-	SetReadWrite(0);
+	Set_ReadWrite(0);
 	//(3) Write Slave Register
 	I2C0 -> MDR  = (SLAVE_REG);
 	//(4) Set Start,Run,Ack Condition
 	I2C0 -> MCS = (I2CSTART|I2CRUN);
 	//Call the wait for bus to go idle
-	I2CWait();
+	Wait_I2C0();
 	//Call the check for error function
-	I2CErrorRoutine();
+	ErrorRoutine_I2C0();
 	//Set the Read Bits, on the Slave Address
-	SetReadWrite(1);
+	Set_ReadWrite(1);
 	//Initiate a repeat condition to start reading slave registers
 	I2C0 -> MCS =  (I2CACK|I2CRUN|I2CSTART);
 
 	//Run Loop to get next data from slave untilN_Byte-1 is read, then send a NACK and Stop condition to read last byte.
 	for(uint8_t i=1;i<=N_Byte;i++){
 		//Set Read Bit in the MSA Register
-		I2CWait();
+		Wait_I2C0();
 		// Breakout of Forloop whenever An I2C Error is Detected
-		if( I2CErrorRoutine() !=0){
+		if( ErrorRoutine_I2C0() !=0){
 		   UART_OutString("Exiting For Loop Due to Error At Index : ");UART_OutUDec(i);UART_OutChar(CRJ);
 		   break;
 		}
@@ -143,13 +143,13 @@ void ReadNByteI2C0(uint8_t SLAVE_ADDR, uint8_t SLAVE_REG,uint8_t N_Byte, uint8_t
 }
 
 
-void SetSlaveAddres(uint8_t SLAVE_ADDRESS){                          //Function to Set Slave Address
+void Set_SlaveAddres(uint8_t SLAVE_ADDRESS){                          //Function to Set Slave Address
     I2C0 ->MSA |=(SLAVE_ADDRESS<<1);
     UART_OutString("Slave Address Is Set To: ");
     UART_OutUHex(I2C0 ->MSA);UART_OutChar(CRJ);
 }
 
-void SetReadWrite(uint8_t I2CREAD){                                  // Function to Set Read the Read Bit to 1 for I2C Slave Read, and 0 for I2c Slave Write
+void Set_ReadWrite(uint8_t I2CREAD){                                  // Function to Set Read the Read Bit to 1 for I2C Slave Read, and 0 for I2c Slave Write
   if(I2CREAD !=0){
     I2C0 ->MSA |=(1U<<0);
   }
@@ -158,7 +158,7 @@ void SetReadWrite(uint8_t I2CREAD){                                  // Function
   }
 }
 
-uint8_t I2CErrorRoutine(){
+uint8_t ErrorRoutine_I2C0(){
        //Troubleshooting Code
      //  UART_OutString("Inside Error Routine ");UART_OutChar(CRJ);
 
@@ -187,7 +187,7 @@ uint8_t I2CErrorRoutine(){
 }
 
 //Function Returns 0 if there's an error Condition. Else 1
-void I2CWait(){
+void Wait_I2C0(){
 
   //UART_OutString("Running the XferDone Function: ");UART_OutChar(CRJ);
 

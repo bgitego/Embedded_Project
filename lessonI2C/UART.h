@@ -76,6 +76,14 @@ unsigned long UART_InUDec(void);
 // Variable format 1-10 digits with no space before or after
 void UART_OutUDec(unsigned long n);
 
+
+//-----------------------UART_OutUDec-----------------------
+// Output a 32-bit number in signed decimal format
+// Input: 32-bit number to be transferred
+// Output: none
+// Variable format 1-10 digits with no space before or after
+void UART_OutDec(unsigned long n);
+
 //---------------------UART_InUHex----------------------------------------
 // Accepts ASCII input in unsigned hexadecimal (base 16) format
 // Input: none
